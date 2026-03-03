@@ -7,9 +7,9 @@ const port = process.env.PORT || 3000;
 
 // 模擬資料庫
 const users = [
-  { id: 1, username: "admin", password: "123456", role: "admin" },
-  { id: 2, username: "manager", password: "123456", role: "manager" },
-  { id: 3, username: "viewer", password: "123456", role: "viewer" }
+  { id: 1, username: "admin", password: "5555", role: "admin" },
+  { id: 2, username: "manager", password: "5555", role: "manager" },
+  { id: 3, username: "viewer", password: "5555", role: "viewer" }
 ];
 
 app.use(express.urlencoded({ extended: true }));
