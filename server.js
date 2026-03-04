@@ -5,12 +5,8 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
-// 模擬資料庫
-const users = [
-  { id: 1, username: "admin", password: "5555", role: "admin" },
-  { id: 2, username: "manager", password: "5555", role: "manager" },
-  { id: 3, username: "viewer", password: "5555", role: "viewer" }
-];
+const db = require('./database');
+const bcrypt = require('bcrypt');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -37,16 +33,29 @@ app.get('/', (req, res) => {
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
 
-  const user = users.find(u =>
-    u.username === username && u.password === password
+  db.get(
+    "SELECT * FROM users WHERE username = ?",
+    [username],
+    async (err, user) => {
+      if (!user) {
+        return res.send("帳號不存在");
+      }
+
+      const match = await bcrypt.compare(password, user.password);
+
+      if (!match) {
+        return res.send("密碼錯誤");
+      }
+
+      req.session.user = {
+        id: user.id,
+        username: user.username,
+        role: user.role
+      };
+
+      res.redirect('/');
+    }
   );
-
-  if (!user) {
-    return res.send("帳號或密碼錯誤");
-  }
-
-  req.session.user = user;
-  res.redirect('/');
 });
 
 // 登出
@@ -58,4 +67,22 @@ app.get('/logout', (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
+});
+
+
+app.post('/register', async (req, res) => {
+  const { username, password, role } = req.body;
+
+  const hashedPassword = await bcrypt.hash(password, 10);
+
+  db.run(
+    "INSERT INTO users (username, password, role) VALUES (?, ?, ?)",
+    [username, hashedPassword, role],
+    function (err) {
+      if (err) {
+        return res.status(400).send("使用者已存在");
+      }
+      res.send("使用者建立成功");
+    }
+  );
 });

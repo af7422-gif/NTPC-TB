@@ -11,5 +11,17 @@
     <input type="password" name="password" placeholder="密碼" required><br><br>
     <button type="submit">登入</button>
   </form>
+  <form action="/register" method="POST">
+    <input type="text" name="username" placeholder="帳號" required />
+    <input type="password" name="password" placeholder="密碼" required />
+    
+    <select name="role">
+      <option value="admin">admin</option>
+      <option value="manager">manager</option>
+      <option value="viewer">viewer</option>
+    </select>
+
+    <button type="submit">註冊</button>
+  </form>
 </body>
 </html>

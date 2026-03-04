@@ -1,0 +1,18 @@
+const sqlite3 = require('sqlite3').verbose();
+
+const db = new sqlite3.Database('./caseList.db');
+
+// 建立資料表
+db.serialize(() => {
+  db.run(`
+    CREATE TABLE IF NOT EXISTS users (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      username TEXT UNIQUE NOT NULL,
+      password TEXT NOT NULL,
+      role TEXT NOT NULL,
+      created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    )
+  `);
+});
+
+module.exports = db;
