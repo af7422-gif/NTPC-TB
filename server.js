@@ -5,12 +5,12 @@ const path = require('path');
 const app = express();
 const port = process.env.PORT || 3000;
 
-const db = require('./database');
+const db = require('./src/database/database')
 const bcrypt = require('bcrypt');
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'intranet-secret',
   resave: false,
@@ -20,7 +20,7 @@ app.use(session({
 // 首頁
 app.get('/', (req, res) => {
   if (!req.session.user) {
-    return res.sendFile(path.join(__dirname, 'public/login.html'));
+    return res.sendFile(path.join(__dirname, 'views/login.html'));
   }
   res.send(`
     <h2>歡迎 ${req.session.user.username}</h2>

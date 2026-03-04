@@ -1,6 +1,6 @@
 const sqlite3 = require('sqlite3').verbose();
 
-const db = new sqlite3.Database('./caseList.db');
+const db = new sqlite3.Database('./database.db');
 
 // 建立資料表
 db.serialize(() => {

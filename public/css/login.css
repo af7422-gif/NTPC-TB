@@ -1,0 +1,96 @@
+/* ===== 登入頁整體版面設定 ===== */
+
+.login-page {
+  margin: 0;
+  font-family: "Microsoft JhengHei", Arial, sans-serif;
+  background: linear-gradient(135deg, #244066, #3f5673);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== 登入卡片容器樣式 ===== */
+
+.login-container {
+  background: #ffffff;
+  padding: 40px 50px;
+  width: 360px;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+/* ===== 標題樣式設定 ===== */
+
+.login-title {
+  margin-bottom: 30px;
+  font-size: 22px;
+  font-weight: 600;
+  color: #2f3e52;
+  letter-spacing: 1px;
+}
+
+/* ===== 表單區域樣式 ===== */
+
+.login-form {
+  width: 100%;
+}
+
+/* 表單欄位群組（label + input） */
+.form-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+/* 欄位標籤樣式 */
+.form-group label {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 6px;
+  display: block;
+}
+
+/* 輸入框基本樣式 */
+.form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ccd2d9;
+  border-radius: 4px;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+/* 輸入框聚焦效果（focus 狀態） */
+.form-group input:focus {
+  border-color: #3f5673;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(63, 86, 115, 0.15);
+}
+
+/* ===== 登入按鈕樣式 ===== */
+
+.login-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #3f5673;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+/* 滑鼠移入按鈕時的樣式 */
+.login-btn:hover {
+  background-color: #2f3e52;
+}
+
+/* ===== 頁尾資訊文字樣式 ===== */
+
+.login-footer {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #999;
+}
